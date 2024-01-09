@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ inputs }: { config, pkgs, lib, ... }:
 
 let
   fromGitHub = rev: ref: repo: pkgs.vimUtils.buildVimPlugin {
@@ -34,20 +34,31 @@ in
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+
     plugins = with pkgs.vimPlugins; [
+      catppuccin-nvim
       nvim-lspconfig
       nvim-treesitter.withAllGrammars
+
+      # telescope
       plenary-nvim
+      telescope-nvim
+
       nvim-cmp
       comment-nvim
       copilot-lua
       legendary-nvim
       lualine-nvim
       nvim-tree-lua
+
       (fromGitHub "e7868b38f402be94e859d479002df1418bc1e954" "main" "coffebar/neovim-project")
+
+      # configuration
+      inputs.self.packages.x86_64-linux.fcoury-nvim
     ];
   };
 
