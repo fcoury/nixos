@@ -99,6 +99,9 @@ in
     ethtool
     pciutils
     usbutils
+
+    # apps
+    google-chrome
   ];
 
   programs.alacritty = {
