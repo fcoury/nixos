@@ -20,9 +20,9 @@ in
     userName = "Felipe Coury";
     userEmail = "felipe.coury@gmail.com";
     aliases = {
-      ci = "commit";
       co = "checkout";
-      s = "status";
+      st = "status -sb";
+      ap = "add -p";
     };
     extraConfig = {
       credential.helper = "${
