@@ -67,6 +67,7 @@ in
       legendary-nvim
       lualine-nvim
       nvim-tree-lua
+      vim-visual-multi
 
       (fromGitHub "e7868b38f402be94e859d479002df1418bc1e954" "main" "coffebar/neovim-project")
       (fromGitHub "68dde355a4304d83b40cf073f53915604bdd8e70" "master" "Shatur/neovim-session-manager")
