@@ -145,6 +145,15 @@ in
     vscode
     nodejs
     yarn
+    gcc
+    gnumake
+    glibc.dev
+    binutils
+    autoconf
+    automake
+    libtool
+    pkg-config
+    rustup
 
     # apps
     google-chrome
