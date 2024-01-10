@@ -1,6 +1,3 @@
--- no config plugins
-require('Comment').setup()
-
 -- configuration plugins
 require 'plugins/telescope'
 require 'plugins/theme'
@@ -13,3 +10,8 @@ require 'plugins/rust-tools'
 require 'plugins/lsp-config'
 require 'plugins/treesitter'
 require 'plugins/legendary'
+
+-- no config plugins
+require('Comment').setup()
+require('fidget').setup()
+require("ibl").setup()
