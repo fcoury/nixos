@@ -11,19 +11,33 @@
 
   outputs = inputs@{ nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
+      "nixps" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/nixps/configuration.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.fcoury = import ./home.nix { inherit inputs; };
+          }
+        ];
+      };
       "nixos" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-	modules = [
-	  ./configuration.nix
+        modules = [
+          ./hosts/nixos/configuration.nix
 
-	  home-manager.nixosModules.home-manager
-	  {
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
 
-	    home-manager.users.fcoury = import ./home.nix { inherit inputs; };
-	  }
-	];
+            home-manager.users.fcoury = import ./home.nix { inherit inputs; };
+          }
+        ];
       };
     };
 
