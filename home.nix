@@ -59,8 +59,11 @@ in
       cmp-nvim-lsp
       cmp-cmdline
 
-      comment-nvim
+      # copilot
       copilot-lua
+      copilot-cmp
+
+      comment-nvim
       legendary-nvim
       lualine-nvim
       nvim-tree-lua
