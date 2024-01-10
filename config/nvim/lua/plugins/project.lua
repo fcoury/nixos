@@ -3,7 +3,7 @@ vim.opt.sessionoptions:append("globals") -- save global variables that start wit
 -- setup neovim-project plugin
 require("neovim-project").setup {
   projects = { -- define project roots
-    "~/projects/*",
+    "~/code/*",
     "~/.config/*",
   },
 }
