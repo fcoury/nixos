@@ -85,9 +85,87 @@ in
 
   programs.fish = {
     enable = true;
-    interactiveShellInit = ''
-      set fish_greeting # Disable greeting
+    shellInit = ''
+    # searches home and home/code folders by default
+    set -g CDPATH . $HOME $HOME/code
+
+    # general functions
+    function ca
+      cargo add $argv; and cargo sort
+    end
+
+    function mc
+      set dir $argv[1]
+      if test -z "$argv[1]"
+        set dir (pwd)
+      end
+
+      set prev_dir (pwd)
+
+      function onexit --on-signal SIGINT --on-signal SIGTERM
+        cd $prev_dir
+      end
+
+      cd $HOME/code/msuite
+      cargo run -- -d config --env-file "$dir/.env" --path "$dir" --watch
+
+      cd $prev_dir
+    end
+
+    function tt
+      set dir (pwd)
+      set test $argv[1]
+      if test -z "$argv[1]"
+        set test "."
+      end
+
+      set prev_dir (pwd)
+
+      function onexit --on-signal SIGINT --on-signal SIGTERM
+        cd $prev_dir
+      end
+
+      cd $HOME/code/msuite
+      cargo watch -x 'run -- config --path '"$dir"' --env-file '"$dir/.env"' test '"$dir/$argv"' --watch'
+
+      cd $prev_dir
+    end
+
+    # Eza config
+    # Remove alias or function named 'ls' if it exists
+    functions -e ls
+
+    # Check if 'eza' command exists
+    if type -q eza
+        # Define the 'ls' function
+        function ls
+            # Check if '-rt' is in the arguments
+            set contains_rt false
+            for arg in $argv
+                if test "$arg" = "-rt"
+                    set contains_rt true
+                    break
+                end
+            end
+
+            # Replace '-rt' with '-snew' if present
+            if test $contains_rt = true
+                set new_argv (string replace -- '-rt' '-snew' $argv)
+                eza $new_argv
+            else
+                eza $argv
+            end
+        end
+    end
+
     '';
+    interactiveShellInit = ''
+      set -U fish_greeting # Disable greeting
+    '';
+    shellAliases = {
+      gl = "git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+      gap = "git add -p";
+    };
   };
 
   programs.git = {
