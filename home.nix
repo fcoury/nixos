@@ -137,6 +137,8 @@ in
     # dev
     nerdfonts
     vscode
+    nodejs
+    yarn
 
     # apps
     google-chrome
