@@ -14,6 +14,81 @@ in
 {
   home.username = "fcoury";
   home.homeDirectory = "/home/fcoury";
+  home.packages = with pkgs; [
+    neofetch
+    nnn
+    fish
+
+    # archives
+    zip
+    unzip
+
+    # utils
+    ripgrep
+    jq
+    eza
+    fzf
+
+    # networking tools
+    dnsutils
+    ldns
+    aria2
+    nmap
+
+    # misc
+    cowsay
+    file
+    which
+    tree
+    gnused
+    gnutar
+    gawk
+    zstd
+    gnupg
+
+    # nix related
+    nix-output-monitor
+
+    # productivity
+    btop
+    iotop
+    iftop
+
+    strace
+    ltrace
+    lsof
+
+    sysstat
+    lm_sensors
+    ethtool
+    pciutils
+    usbutils
+
+    # dev
+    nerdfonts
+    vscode
+    nodejs
+    yarn
+    gcc
+    gnumake
+    glibc.dev
+    binutils
+    autoconf
+    automake
+    libtool
+    pkg-config
+    rustup
+
+    # apps
+    google-chrome
+  ];
+
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
+  };
 
   programs.git = {
     enable = true;
@@ -90,74 +165,6 @@ in
       require 'plugins'
     '';
   };
-
-  home.packages = with pkgs; [
-    neofetch
-    nnn
-
-    # archives
-    zip
-    unzip
-
-    # utils
-    ripgrep
-    jq
-    eza
-    fzf
-
-    # networking tools
-    dnsutils
-    ldns
-    aria2
-    nmap
-
-    # misc
-    cowsay
-    file
-    which
-    tree
-    gnused
-    gnutar
-    gawk
-    zstd
-    gnupg
-
-    # nix related
-    nix-output-monitor
-
-    # productivity
-    btop
-    iotop
-    iftop
-
-    strace
-    ltrace
-    lsof
-
-    sysstat
-    lm_sensors
-    ethtool
-    pciutils
-    usbutils
-
-    # dev
-    nerdfonts
-    vscode
-    nodejs
-    yarn
-    gcc
-    gnumake
-    glibc.dev
-    binutils
-    autoconf
-    automake
-    libtool
-    pkg-config
-    rustup
-
-    # apps
-    google-chrome
-  ];
 
   programs.alacritty = {
     enable = true;
