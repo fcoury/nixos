@@ -49,7 +49,16 @@ in
       telescope-nvim
       telescope-ui-select-nvim
 
+      # cmp
       nvim-cmp
+      cmp-buffer
+      cmp-path
+      luasnip
+      cmp_luasnip
+      lspkind-nvim
+      cmp-nvim-lsp
+      cmp-cmdline
+
       comment-nvim
       copilot-lua
       legendary-nvim
