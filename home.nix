@@ -47,6 +47,7 @@ in
       # telescope
       plenary-nvim
       telescope-nvim
+      telescope-ui-select-nvim
 
       nvim-cmp
       comment-nvim
@@ -60,6 +61,16 @@ in
       # configuration
       inputs.self.packages.x86_64-linux.fcoury-nvim
     ];
+
+    extraLuaConfig = ''
+      -- nvim config
+      require 'vim-options'
+      require 'neovide'
+      require 'keymap'
+
+      -- plugins
+      require 'plugins'
+    '';
   };
 
   home.packages = with pkgs; [
@@ -92,7 +103,7 @@ in
     gawk
     zstd
     gnupg
-  
+
     # nix related
     nix-output-monitor
 
@@ -110,6 +121,10 @@ in
     ethtool
     pciutils
     usbutils
+
+    # dev
+    nerdfonts
+    vscode
 
     # apps
     google-chrome

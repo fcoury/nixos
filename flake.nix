@@ -28,7 +28,7 @@
     };
 
     packages.x86_64-linux.fcoury-nvim = nixpkgs.legacyPackages.x86_64-linux.vimUtils.buildVimPlugin {
-        name = "FelipeNVim";
+        name = "fcoury-nvim";
         src = ./config/nvim;
     };
   };
